@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: caseStudymyinsuranceapp-service-az
+  name: casestyudmyinsuranceapp-service-az
   labels:
-    app: caseStudymyinsuranceapp-az
+    app: casestyudmyinsuranceapp-az
 spec:
   type: NodePort
   selector:
-    app: caseStudymyinsuranceapp-az
+    app: casestyudmyinsuranceapp-az
   ports:
   - port: 5000
     targetPort: http

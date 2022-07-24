@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: caseStyudyinsuranceapp-service
+  name: casestyudmyinsuranceapp-service
   labels:
-    app: caseStudyinsuranceapp
+    app: casestyudmyinsuranceapp
 spec:
   selector:
-    app: caseStudyinsuranceapp
+    app: casestyudmyinsuranceapp
   type: NodePort
   ports:
   - port: 5000

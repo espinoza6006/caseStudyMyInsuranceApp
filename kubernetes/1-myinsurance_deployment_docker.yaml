@@ -12,10 +12,10 @@ spec:
   template:
     metadata:
       labels:
-        app: myinsuranceapp
+        app: casestyudmyinsuranceapp
     spec:
       containers:
-      - name: myinsuranceapp-deployment
+      - name: casestyudmyinsuranceapp-deployment
         image: espinoza6006/csmyinsuranceapp:v1
         ports:
         - name: http

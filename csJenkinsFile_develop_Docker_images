@@ -3,7 +3,7 @@ pipeline {
     
     
     stages {
-        stage('Checkout') {
+        stage('Checkout') { // clonando remote repo en jenkins
             steps {
                 git branch: 'develop',url: 'https://github.com/espinoza6006/caseStudyMyInsuranceApp.git'
 	        }

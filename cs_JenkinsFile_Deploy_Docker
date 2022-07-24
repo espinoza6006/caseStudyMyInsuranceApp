@@ -30,7 +30,7 @@ pipeline {
         stage('Create image') {
             steps {
                 echo 'creating image...'
-                sh 'docker build -t espinoza6006/csmyinsuranceapp:v1 -f Dockerfile .'
+                sh 'docker build -t espinoza6006/csmyinsuranceapp:v1 -f dockerFile .'
                 
             }
         } 
@@ -47,7 +47,7 @@ pipeline {
             steps {
                 withKubeConfig([credentialsId: 'k8-credentials']) {
                     sh 'kubectl apply -f kubernetes/1-myinsurance_deployment_docker.yaml'
-                    sh 'kubectl apply -f kubernetes/1-myinsurance_service_docker.yaml'
+                    sh 'kubectl apply -f kubernetes/2-myinsurance_service_docker.yaml'
                     sh 'kubectl port-forward service/myinsuranceapp 5000:5000 &'
                 }
             }

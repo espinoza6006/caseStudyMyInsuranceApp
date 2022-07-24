@@ -1,14 +1,14 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: caseStyudmyinsuranceapp-Deployment
+  name: casestyudmyinsuranceapp-deployment
   labels:
-    app: caseStyudmyinsuranceapp
+    app:  casestyudmyinsuranceapp
 spec:
   replicas: 5
   selector:
     matchLabels:
-      app: caseStyudmyinsuranceapp
+      app:  casestyudmyinsuranceapp
   template:
     metadata:
       labels:
@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: myinsuranceapp-deployment
-        image: 618383339/final_cs:myinsuranceapp
+        image: espinoza6006/csmyinsuranceapp:v1
         ports:
         - name: http
           containerPort: 5000

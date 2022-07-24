@@ -1,3 +1,5 @@
+//Pipeline para generar una ymagen y publicarla en el regitry de dockerhub
+
 pipeline {
     agent any
     

@@ -32,7 +32,7 @@ pipeline {
         stage('Create image') {
             steps {
                 echo 'creating image...'
-                sh 'docker build -t espinoza6006/csmyinsuranceapp:v1 -f dockerFile .'
+                sh 'docker build -t azcsmyinsuranceapp.azurecr.io/csmyinsuranceapp:v1 -f dockerFile .'
                 
             }
         } 

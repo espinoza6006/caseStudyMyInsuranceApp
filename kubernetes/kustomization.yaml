@@ -2,4 +2,4 @@ resources:
   - 1-myinsurance_deployment_docker.yaml
   - 2-myinsurance_service_docker.yaml
   - 3-myinsurance_deployment_az.yaml
-  - 4- myinsurance_service_az.yaml
+  - 4-myinsurance_service_az.yaml

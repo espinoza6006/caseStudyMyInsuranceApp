@@ -47,7 +47,7 @@ pipeline {
             steps {
                 withKubeConfig([credentialsId: 'k8-credentials']) {
                     sh 'kubectl apply -f kubernetes/3-myinsurance_deployment_az.yaml'
-                    sh 'kubectl apply -f kubernetes/4- myinsurance_service_az.yaml'
+                    sh 'kubectl apply -f kubernetes/4-myinsurance_service_az.yaml'
                     sh 'kubectl port-forward service/myinsuranceapp 5000:5000 &'
                 }
             }

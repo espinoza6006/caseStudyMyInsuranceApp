@@ -5,10 +5,10 @@ pipeline {
     
     
     stages {
-        stage('Checkout') { // clonando remote repo en jenkins
+        stage('Checkout') {
             steps {
-                git branch: 'develop',url: 'https://github.com/espinoza6006/caseStudyMyInsuranceApp.git'
-	        }
+                git branch: 'deploy',url: 'https://github.com/espinoza6006/caseStudyMyInsuranceApp.git'
+            }
         }        
         stage('Requirements') {
             steps {
@@ -25,7 +25,7 @@ pipeline {
         }        
         stage('Acceptance tests') {
             steps {
-                echo 'Acceptance..'
+                echo 'Acceptance...'
                 sh 'python3 -m unittest discover -s tests/acceptance-flask -v'
             }
         }     
@@ -33,16 +33,33 @@ pipeline {
             steps {
                 echo 'creating image...'
                 sh 'docker build -t espinoza6006/csmyinsuranceapp:v1 -f dockerFile .'
+                
             }
         } 
         stage('Publish image') {
             steps {
-                echo 'pushing image...'
-                withDockerRegistry([ credentialsId: "docker-hub-credentials", url: "" ]) {
-                    sh 'docker push espinoza6006/csmyinsuranceapp:v1'
+                echo 'pushing image..'
+                withDockerRegistry([ credentialsId: "az-credentialcs", url: "https://azcsmyinsuranceapp.azurecr.io" ]) {
+                    sh 'docker push azcsmyinsuranceapp.azurecr.io/csmyinsuranceapp:v1'
+                }
+               
+            }
+        }
+        stage('Apply Kubernetes ') {
+            steps {
+                withKubeConfig([credentialsId: 'k8-credentials']) {
+                    sh 'kubectl apply -f kubernetes/3-myinsurance_deployment_az.yaml'
+                    sh 'kubectl apply -f kubernetes/4-myinsurance_service_az.yaml'
+                    sh 'kubectl port-forward service/myinsuranceapp 5000:5000 &'
                 }
             }
-        } 
+        }
+       /* stage('External acceptance tests') {
+            steps{
+                echo 'External acceptance tests...'
+                sh 'python3 -m unittest discover -s tests/acceptance-request -v'
+            }
+        } */
     }
     post {
         always {
@@ -56,7 +73,8 @@ pipeline {
         }
         cleanup{
             echo 'post do this when cleanup...'
-            deleteDir()
+            //sh 'pkill -f "port-forward"'
+            //deleteDir()
         }
     }
 }

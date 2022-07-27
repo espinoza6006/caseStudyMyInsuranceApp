@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: casestyudmyinsuranceapp-deployment-az
+  name: casestudymyinsuranceapp-deployment-az
   labels:
     app: casestyudmyinsuranceapp-az
 spec:
@@ -17,8 +17,8 @@ spec:
       imagePullSecrets:
       - name: acr-secret 
       containers:
-      - name: casestyudmyinsuranceapp-deployment-az
-        # image:  finalcsux.azurecr.io/myinsuranceapp:v3
+      - name: casestudymyinsuranceapp-deployment-az
+        image:  azcsmyinsuranceapp.azurecr.io/csmyinsuranceapp:v1
         ports:
         - name: http
           containerPort: 5000
